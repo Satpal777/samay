@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useHistory } from "../../hooks/useHistory";
 
 /** A stopwatch with start/pause, lap, and reset controls */
 export default function Stopwatch() {
+  const { addEntry } = useHistory();
   const [isRunning, setIsRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [laps, setLaps] = useState<number[]>([]);
@@ -39,16 +41,21 @@ export default function Stopwatch() {
   }, [elapsed]);
 
   const handleReset = useCallback(() => {
+    if (elapsed > 0) {
+      addEntry({
+        type: "stopwatch",
+        duration: elapsed,
+        display: formatTime(elapsed),
+        laps: laps.length,
+      });
+    }
     setIsRunning(false);
     setElapsed(0);
     setLaps([]);
-  }, []);
+  }, [elapsed, laps.length, addEntry]);
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center rounded-2xl bg-black/20 text-white">
-      <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/50">
-        Stopwatch
-      </p>
 
       <div
         className="mt-4 text-6xl font-black tabular-nums tracking-tight"

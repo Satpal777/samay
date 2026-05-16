@@ -18,7 +18,7 @@ export default function Mac() {
   } = useWindowManager();
 
   return (
-    <section className="flex min-h-screen w-full items-center justify-center overflow-hidden bg-[#030207] p-6 font-sans text-white sm:p-10">
+    <section className="flex h-full w-full items-center justify-center overflow-hidden bg-[#030207] p-6 font-sans text-white sm:p-10">
       <MacBookShell>
         <Screen
           screenRef={screenRef}
