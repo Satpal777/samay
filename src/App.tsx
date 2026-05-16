@@ -1,12 +1,9 @@
-import Navbar from "./components/Navbar"
+import Mac from "./components/Mac";
 
-function App() {
-
+export default function App() {
   return (
-    <div className="bg-slate-950 h-screen w-screen">
-      <Navbar />
-    </div>
-  )
+    <main className="h-screen w-screen bg-slate-950">
+      <Mac />
+    </main>
+  );
 }
-
-export default App
